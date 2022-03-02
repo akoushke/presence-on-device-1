@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+  height: 50rem;
+
+  .favs {
+    display: flex;
+    overflow: scroll;
+    width: 55rem;
+    height: 100%;
+    flex-direction: column;
+    background-color: $white;
+    border-radius: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+
+    .toggle {
+      align-self: flex-end;
+      margin: 1rem;
+    }
+    .menus {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+   }
+  }
+}

@@ -1,0 +1,44 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  padding: 0 1rem 0 1rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
+  .searchInput {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8rem;
+  }
+
+  .avatars {
+    display: flex;
+    overflow: auto;
+    flex-wrap: wrap;
+    width: 52.5rem;
+    height: 19rem;
+    background-color: #F7F7F7;
+    border-radius: 1rem;
+  }
+
+  .searchAvatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    padding-left: 0.5rem;
+  }
+  
+  .searchDisplayName {
+    display: flex;
+    width: 10rem;
+    padding-top: 0.5rem;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,61 @@
+.menu {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 1rem;
+  border-radius: 0.75rem;
+  background-color: #F7F7F7;
+  width: 50rem;
+  height: 4rem;
+  padding: 1rem;
+}
+
+.menuContent {
+  display: flex;
+  width: 44rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+  
+    .displayName {
+      font-size: 1.75rem;
+    }
+  
+    .titleJob {
+      padding-top: 0.25rem;
+      font-size: 1rem;
+      line-height: 1.125rem;
+      color: #545454;
+    }
+  }
+
+  .md-event-overlay__children {
+    width: 10rem;
+
+    .md-list-item {
+      display: flex;
+      width: auto;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .callButton {
+    width: 8rem;
+    height: 2.5rem;
+
+    .md-button__children {
+      justify-content: space-between;
+    }
+
+    .buttonTitle {
+      font-size: 1.125rem;
+    }
+  }
+
+}
