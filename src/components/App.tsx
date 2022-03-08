@@ -31,14 +31,14 @@ export default class App extends Component {
     this.token = "";
     this.state = {
       isWebexConnected: false,
-      isTokenValid: false,
+      isTokenValid: !!this.code,
       displayAuthPrompt: false
     };
   }
 
   async componentDidMount() {
     if(this.code) {
-      const loginPromise = axios.post(auth_url, queryString.stringify({
+      const {data} = await axios.post(auth_url, queryString.stringify({
         code: this.code,
         redirect_uri: redirect_uri,
         grant_type: "authorization_code",
@@ -51,16 +51,12 @@ export default class App extends Component {
         }
       });
 
-      if(this.state) {
-        const {data} = await loginPromise;
+      if(this.urlState) {
+        this.setState({displayAuthPrompt: true});
         const socket = io(server_url);
-
-
-        data.state = this.state;
+        data.state = this.urlState;
         socket.emit('token', data);
       } else {
-        const {data} = await loginPromise;
-
         this.setState({isTokenValid: true});
         this.storeToken(data);
         await this.connect(data.access_token);
