@@ -18,6 +18,7 @@ module.exports = smp.wrap({
   output: {
     path: path.resolve(__dirname, "./docs"),
     filename: 'bundle.js',
+    // publicPath:path.resolve(__dirname, "./docs")
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".png"],
@@ -67,7 +68,9 @@ module.exports = smp.wrap({
         test: /\.svg(\?v=\d+.\d+.\d+)?$/,
         loader: 'url-loader',
       },
-      { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader' },
+      // { test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader' },
+      {test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader"},
+
       { test: /\.ico$/, loader: 'file-loader' },
     ],
   },

@@ -7,4 +7,15 @@
   .loading {
     background-color: #dedede;
   }
+
+  .bear {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .bearContent {
+      color: brown;
+      font-size: 1.25rem;
+    }
+  }
 }

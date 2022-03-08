@@ -9,6 +9,8 @@ import AuthModal from './AuthModal';
 import { io } from "socket.io-client";
 import queryString from 'querystring';
 import { client_id, client_secret, auth_url, server_url, redirect_uri } from '../constants';
+import gif from '../../assets/images/bear.gif';
+// import gif from '../../assets/images/presence.png';
 
 declare type Props = null;
 
@@ -135,6 +137,11 @@ export default class App extends Component {
       <p>You may now close this tab!</p>
     </div>;
 
+    const loading = <div className='bear'>
+      <p className='bearContent'>Initial load may take a bit longer. </p>
+      <img src={gif} />
+    </div>
+
     return <>
       { this.state.displayAuthPrompt ?
         authSuccessful :
@@ -142,10 +149,12 @@ export default class App extends Component {
           {!this.state.isTokenValid ? 
             <AuthModal loginState={this.loginState} /> : 
             <div className="app">
-              {this.state.isWebexConnected ? <Content webex={this.webex} /> : <Spinner />}
+              {this.state.isWebexConnected ? <Content webex={this.webex} /> : loading}
             </div>}
         </div>
       }
     </>
+
+    return loading;
   }
 }
