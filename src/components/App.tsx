@@ -8,8 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import AuthModal from './AuthModal';
 import { io } from "socket.io-client";
 import queryString from 'querystring';
-import { storeToken } from '../utils';
-import { client_id, client_secret, auth_url, server_url } from '../constants';
+import { client_id, client_secret, auth_url, server_url, redirect_uri } from '../constants';
 
 declare type Props = null;
 
@@ -20,20 +19,53 @@ export default class App extends Component {
   token: string;
   socket: any;
   loginState: string;
+  code: string;
+  urlState: string;
 
   constructor(props: Props) {
     super(props);
+    this.code = new URLSearchParams(window.location.search).get("code");
+    this.urlState = new URLSearchParams(window.location.search).get("state");
     this.loginState = uuidv4();
     this.socket = io(server_url);
     this.token = "";
     this.state = {
       isWebexConnected: false,
-      isTokenValid: false
+      isTokenValid: false,
+      displayAuthPrompt: false
     };
   }
 
   async componentDidMount() {
-    if(localStorage.getItem('webex_token')) {
+    if(this.code) {
+      const loginPromise = axios.post(auth_url, queryString.stringify({
+        code: this.code,
+        redirect_uri: redirect_uri,
+        grant_type: "authorization_code",
+        client_id: client_id,
+        client_secret: client_secret
+      }), 
+      {
+        headers: { 
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      });
+
+      if(this.state) {
+        const {data} = await loginPromise;
+        const socket = io(server_url);
+
+
+        data.state = this.state;
+        socket.emit('token', data);
+      } else {
+        const {data} = await loginPromise;
+
+        this.setState({isTokenValid: true});
+        this.storeToken(data);
+        await this.connect(data.access_token);
+      }
+    } else if(localStorage.getItem('webex_token')) {
       await this.validateToken();
       await this.connect(localStorage.getItem('webex_token'));
 
@@ -42,7 +74,7 @@ export default class App extends Component {
 
       this.socket.on('token', async (token) => {
         this.setState({isTokenValid: true});
-        storeToken(token);
+        this.storeToken(token);
         await this.connect(token.access_token);
       });
     }
@@ -60,6 +92,14 @@ export default class App extends Component {
     }
   }
 
+  storeToken({expires_in, access_token, refresh_token}) {
+    const startDate = moment.utc();
+    const expirationDate = startDate.add(Number(expires_in), 'seconds');
+    
+    localStorage.setItem('webex_token', access_token);
+    localStorage.setItem('expiration_date', expirationDate.format());
+    localStorage.setItem('refresh_token', refresh_token);
+  }
 
   async requestForFreshToken() {
     const refresh_token = localStorage.getItem('refresh_token');
@@ -77,7 +117,7 @@ export default class App extends Component {
         }
       });
       
-      storeToken(data);
+      this.storeToken(data);
     } catch (error) {
       console.log(error);
     }
@@ -94,12 +134,22 @@ export default class App extends Component {
 
 
   render(): JSX.Element {
-    return <div>
-      {!this.state.isTokenValid ? 
-        <AuthModal loginState={this.loginState} /> : 
-        <div className="app">
-          {this.state.isWebexConnected ? <Content webex={this.webex} /> : <Spinner />}
-        </div>}
-    </div>
+    const authSuccessful = <div>
+      <h4>Login Completed Successfully!</h4>
+      <p>You may now close this tab!</p>
+    </div>;
+
+    return <>
+      { this.state.displayAuthPrompt ?
+        authSuccessful :
+        <div>
+          {!this.state.isTokenValid ? 
+            <AuthModal loginState={this.loginState} /> : 
+            <div className="app">
+              {this.state.isWebexConnected ? <Content webex={this.webex} /> : <Spinner />}
+            </div>}
+        </div>
+      }
+    </>
   }
 }

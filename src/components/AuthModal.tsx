@@ -2,7 +2,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Modal, ModalBody, ModalFooter, Button, Link} from '@momentum-ui/react';
 import QRCode from 'qrcode.react';
-import {login_url} from '../Constants';
+import {login_url} from '../constants';
 
 
 export default ({loginState}): JSX.Element => {

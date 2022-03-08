@@ -61,9 +61,11 @@
     "querystring": "^0.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^6.2.2",
     "socket.io-client": "^4.4.1",
     "uuid": "^8.3.2",
     "webex": "^1.118.4"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
