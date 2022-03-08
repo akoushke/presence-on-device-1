@@ -6,10 +6,11 @@ interface Props {
   webex: any,
   person: any,
   allowSubscription?: boolean
-  size?: number
+  size?: number,
+  updateStatus?: (status: string) => void
 }
 
-export default ({webex, person, allowSubscription=false, size=28}: Props): JSX.Element => {
+export default ({webex, person, allowSubscription=false, size=28, updateStatus=()=>{}}: Props): JSX.Element => {
   const [type, setType] = useState('');
 
   useEffect(() => {
@@ -18,7 +19,8 @@ export default ({webex, person, allowSubscription=false, size=28}: Props): JSX.E
         if(!status || status === 'unknown') {
           status = '';
         }
-  
+        
+        updateStatus(status)
         setType(status);
       });
     } else {

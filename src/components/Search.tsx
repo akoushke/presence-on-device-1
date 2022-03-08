@@ -56,8 +56,7 @@ const Search = ({webex, addPerson, removePerson, people}: Props): JSX.Element =>
 
   const searchAvatars = people.map((person) => {
     return  <SearchAvatars webex={webex} person={person} key={person.id} removePerson={removePerson} />
-  }
-  );
+  });
 
   return <div className="search">
     <div className="searchInput">

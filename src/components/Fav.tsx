@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, EditableTextfield, Menu, MenuContent, MenuItem, MenuOverlay, Icon} from '@momentum-ui/react';
+import {Button} from '@momentum-ui/react';
 import PresenceAvatar from './PresenceAvatar';
 import axios from 'axios';
 import {getPerson} from '../Webex';
@@ -11,56 +11,14 @@ interface Props {
 }
 
 const Fav = ({webex, person, removePerson}: Props) => {
-  const [sipAddress, setSipAddress] = useState('No Available SIP Address');
-
-  useEffect(() => {
-    getPerson(person.id).then(({sipAddresses}) => {
-      const sip = sipAddresses.filter((item) => (item.type === 'cloud-calling' && item.primary === true))[0];
-
-      setSipAddress(sip.value);
-    })
-  },[])
-
-  const onClick = async (event, value) => {
-    const {label} = value;
-
-    if(label === 'Sip Address') {
-      await callPerson(sipAddress);
-    } else {
-      await callPerson(person.emails[0]);
-    } 
+  const [disableCall, setDisableCall] = useState(true);
+  const callPerson = async () => {
+    window.location.href = `sip:${person.emails[0]}`;
   };
 
-  const callPerson = async (destination) => {
-    try {
-    const data = JSON.stringify({
-      "deviceId": "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL0RFVklDRS8yNDg0Y2M2NS1kZjZjLTQ2NGMtOTEzNC0zNGY5ZDAxZTQ4MTA=",
-      "arguments": {
-        "Number": destination
-      }
-    });
-    
-    let config = {
-      method: 'post',
-      url: 'https://webexapis.com/v1/xapi/command/Webex.Join',
-      headers: { 
-        Authorization: `Bearer ${localStorage.getItem('webex_token')}`, 
-        Accept: 'application/json', 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    const response = await axios(config);
-    } catch(e) {
-      console.log(e);
-    }
+  const updateStatus = (status) => {
+   if(status === 'active') setDisableCall(false);
   };
-
-  const menuItems = <>
-    {sipAddress !== 'No Available SIP Address' && <MenuItem onClick={onClick} label="Sip Address" />}
-    <MenuItem onClick={onClick} label="Email Address" />
-  </>;
 
   return <div className="menu">
     <PresenceAvatar 
@@ -68,28 +26,21 @@ const Fav = ({webex, person, removePerson}: Props) => {
       person={person}
       allowSubscription={true}
       size={84}
+      updateStatus={updateStatus}
       />
       <div className="menuContent">
         <div className="info">
           <div className="displayName">{`${person.firstName} ${person.lastName}`}</div>
-          <div className="titleJob">{sipAddress}</div>
+          <div className="titleJob">{person.emails[0]}</div>
         </div>
-       <MenuOverlay
-        showArrow={false}
-        menuTrigger={
-          <Button 
-            color="green"
-            className="callButton"
+        <Button
+          disabled={disableCall}
+          color="green"
+          className="callButton"
+          onClick={()=>{callPerson()}}
           >
-            <div className="buttonTitle">Call</div>
-            <Icon name='arrow-down_20' />
-          </Button>
-        }
-      >
-        <Menu>
-          {menuItems}
-        </Menu>
-      </MenuOverlay>
+          <div className="buttonTitle">Call</div>
+        </Button>
       </div>
   </div>
 };
