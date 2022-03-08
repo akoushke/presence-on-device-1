@@ -62,7 +62,7 @@ export default class App extends Component {
         this.setState({isTokenValid: true});
         this.storeToken(data);
         await this.connect(data.access_token);
-        window.history.pushState({}, document.title, "/" + "index.html");
+        window.history.pushState({}, document.title, "/presence-on-device");
       }
     } else if(localStorage.getItem('webex_token')) {
       await this.validateToken();
