@@ -59,6 +59,14 @@ const Content = ({webex}: Props): JSX.Element => {
     }
   };
 
+  const placeholders = <>
+    <div className='menu' />
+    <div className='menu' />
+    <div className='menu' />
+    <div className='menu' />
+    <div className='menu' />
+  </>;
+
   const modal =   
     <Modal
       applicationId='app'
@@ -73,11 +81,13 @@ const Content = ({webex}: Props): JSX.Element => {
         <div className='loginContent'>
           <h1 className="loginHeader">Login</h1>
           <Input 
-            placeholder="Username" 
+            label="Username"
+            placeholder="admin" 
             onChange={(e) => {setUsernameErr({}); setUsername(e.target.value)}} 
             messageArr={[usernameErr]}/>
           <Input 
-            placeholder="Password" 
+            label="Password"
+            placeholder="admin" 
             onChange={(e) => {setPasswordErr({}); setPassword(e.target.value)}} 
             type="password"
             messageArr={[passwordErr]}/>
@@ -127,7 +137,7 @@ const Content = ({webex}: Props): JSX.Element => {
         className="toggle"
       />
       <div className="menus">
-        {displayFavs ? favs : manageFavs}  
+        {displayFavs ? favs.length === 0 ? placeholders : favs : manageFavs}  
       </div>
     </div>
   </div>;

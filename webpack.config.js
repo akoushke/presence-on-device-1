@@ -18,7 +18,6 @@ module.exports = smp.wrap({
   output: {
     path: path.resolve(__dirname, "./docs"),
     filename: 'bundle.js',
-    // publicPath:path.resolve(__dirname, "./docs")
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx", ".png"],
