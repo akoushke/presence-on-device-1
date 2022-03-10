@@ -13,14 +13,14 @@
   <p align="center">
   subscribe to others presence statuses using Webex SDK internal plugin! 
     <br />
-    <a href="https://github.com/WXSD-Sales/WebexPresence"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/WXSD-Sales/presence-on-device"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://wxsd-sales.github.io/WebexPresence/">View Demo</a>
+    <a href="https://wxsd-sales.github.io/presence-on-device/">View Demo</a>
     ·
-    <a href="https://github.com/WXSD-Sales/WebexPresence/issues">Report Bug</a>
+    <a href="https://github.com/WXSD-Sales/presence-on-device/issues">Report Bug</a>
     ·
-    <a href="https://github.com/WXSD-Sales/WebexPresence/issues">Request Feature</a>
+    <a href="https://github.com/WXSD-Sales/presence-on-device/issues">Request Feature</a>
   </p>
 </p>
 
@@ -50,7 +50,7 @@
 
 ## About The Project
 
-[![production-screenshot](assets/images/presence.png)](https://www.youtube.com/watch?v=WZjizs5ZHas)
+[![production-screenshot](assets/images/presence-on-device.png)](link)
 
 In this demo we show how to subscribe to others and set self statuses using webex JS SDK.
 
@@ -70,7 +70,7 @@ If you would like to contribute to our source code and to improve our demo, plea
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/WXSD-Sales/WebexPresence.git
+   git clone https://github.com/WXSD-Sales/presence-on-device.git
    ```
 2. We use NVM to manage our node.js machine versioning. You can learn more about NVM [here](https://github.com/nvm-sh/nvm)
    ```sh
@@ -112,16 +112,16 @@ wxsd@cisco.external.com
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/WXSD-Sales/WebexVoicea.svg?style=for-the-badge
-[contributors-url]: https://github.com/WXSD-Sales/WebexVoicea/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/WXSD-Sales/WebexVoicea.svg?style=for-the-badge
-[forks-url]: https://github.com/WXSD-Sales/WebexVoicea/network/members
-[stars-shield]: https://img.shields.io/github/stars/WXSD-Sales/WebexVoicea.svg?style=for-the-badge
-[stars-url]: https://github.com/WXSD-Sales/WebexVoicea/stargazers
-[issues-shield]: https://img.shields.io/github/issues/WXSD-Sales/WebexVoicea.svg?style=for-the-badge
-[issues-url]: https://github.com/WXSD-Sales/WebexVoicea/issues
-[license-shield]: https://img.shields.io/github/license/WXSD-Sales/WebexVoicea.svg?style=for-the-badge
-[license-url]: https://github.com/WXSD-Sales/WebexVoicea/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/WXSD-Sales/presence-on-device.svg?style=for-the-badge
+[contributors-url]: https://github.com/WXSD-Sales/presence-on-device/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/WXSD-Sales/presence-on-device.svg?style=for-the-badge
+[forks-url]: https://github.com/WXSD-Sales/presence-on-device/network/members
+[stars-shield]: https://img.shields.io/github/stars/WXSD-Sales/presence-on-device.svg?style=for-the-badge
+[stars-url]: https://github.com/WXSD-Sales/presence-on-device/stargazers
+[issues-shield]: https://img.shields.io/github/issues/WXSD-Sales/presence-on-device.svg?style=for-the-badge
+[issues-url]: https://github.com/WXSD-Sales/presence-on-device/issues
+[license-shield]: https://img.shields.io/github/license/WXSD-Sales/presence-on-device.svg?style=for-the-badge
+[license-url]: https://github.com/WXSD-Sales/presence-on-device/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/arash-koushkebaghi-9b1701a4/
 [product-screenshot]: assets/images/presence.png

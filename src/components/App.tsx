@@ -65,8 +65,8 @@ export default class App extends Component {
         window.history.pushState({}, document.title, "/presence-on-device");
       }
     } else if(localStorage.getItem('webex_token')) {
-      await this.validateToken();
-      await this.connect(localStorage.getItem('webex_token'));
+      // await this.validateToken();
+      // await this.connect(localStorage.getItem('webex_token'));
 
     } else {
       this.socket.emit('register', this.loginState);
@@ -147,10 +147,10 @@ export default class App extends Component {
       { this.state.displayAuthPrompt ?
         authSuccessful :
         <div>
-          {!this.state.isTokenValid ? 
+          {this.state.isTokenValid ? 
             <AuthModal loginState={this.loginState} /> : 
             <div className="app">
-              {this.state.isWebexConnected ? <Content webex={this.webex} /> : loading}
+              {!this.state.isWebexConnected ? <Content webex={this.webex} /> : loading}
             </div>}
         </div>
       }

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from '@momentum-ui/react';
+import {Button, Icon} from '@momentum-ui/react';
+import { useMediaQuery } from 'react-responsive';
 import PresenceAvatar from './PresenceAvatar';
 import axios from 'axios';
-import {getPerson} from '../Webex';
+
 
 interface Props {
   webex: any,
@@ -15,17 +16,17 @@ const Fav = ({webex, person, removePerson}: Props) => {
   const callPerson = async () => {
     window.location.href = `sip:${person.emails[0]}`;
   };
-
   const updateStatus = (status) => {
-   if(status === 'active') setDisableCall(false);
+    if(status === 'active') setDisableCall(false);
   };
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   return <div className="menu">
     <PresenceAvatar 
       webex={webex}
       person={person}
       allowSubscription={true}
-      size={84}
+      size={isMobile ? 72 : 84}
       updateStatus={updateStatus}
       />
       <div className="menuContent">
@@ -38,8 +39,9 @@ const Fav = ({webex, person, removePerson}: Props) => {
           color="green"
           className="callButton"
           onClick={()=>{callPerson()}}
+          circle={isMobile}
           >
-          <div className="buttonTitle">Call</div>
+          {isMobile ? <Icon name='icon-audio-call_14' /> : <div className="buttonTitle">Call</div>}
         </Button>
       </div>
   </div>

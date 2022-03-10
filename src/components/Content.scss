@@ -1,12 +1,9 @@
 .content {
   display: flex;
-  height: 50rem;
 
   .favs {
     display: flex;
-    overflow: scroll;
-    width: 55rem;
-    height: 100%;
+    max-width: 70rem;
     flex-direction: column;
     background-color: $white;
     border-radius: 1rem;
@@ -15,15 +12,23 @@
 
     .toggle {
       align-self: flex-end;
-      margin: 1rem;
+      margin-top: 1rem;
+
+      @include respond-to('small') {
+        margin: 1rem 0.5rem 0 0;
+      }
     }
+
     .menus {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin-top: 2rem;
+      max-height: 40rem;
+      overflow: scroll;
+      padding: 0.5rem;
+
+      @include respond-to('small') {
+        padding: 1rem;
+      }
    }
   }
 }
