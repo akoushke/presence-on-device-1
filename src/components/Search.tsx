@@ -23,7 +23,7 @@ const SearchAvatars = ({webex, person, removePerson}) => {
       <Button className="cancelButton"
         onClick={(event) => {handleClick(event)}}
       >
-      <i className="md-icon icon icon-cancel_16" />
+      <i className="md-icon icon icon-cancel_18" />
       </Button>
       <PresenceAvatar 
         webex={webex}
