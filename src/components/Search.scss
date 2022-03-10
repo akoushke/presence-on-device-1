@@ -1,29 +1,33 @@
 .search {
   display: flex;
   flex-direction: column;
-  background-color: $white;
+  background-color: #FFFFFF;
   padding: 0 1rem 0 1rem;
   margin: 1rem 0;
   border-radius: 1rem;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 
   .searchInput {
     display: flex;
     flex-direction: column;
-    margin-bottom: 8rem;
+    margin: 4rem;
   }
 
   .avatars {
+    margin: 0 1rem 0 1rem;
     display: flex;
     overflow: auto;
     flex-wrap: wrap;
-    width: 52.5rem;
-    height: 19rem;
+    width: 25rem;
+    height: 40rem;
+    justify-content: center;
     background-color: #F7F7F7;
     border-radius: 1rem;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+
   }
 
   .searchAvatar {
@@ -33,6 +37,25 @@
     align-items: center;
     height: 10rem;
     padding-left: 0.5rem;
+    padding-bottom: 1rem;
+    background: white;
+    margin: 0.5rem;
+    width: 8rem;
+    border-radius: 1rem;
+
+    .cancelButton {
+      display: flex;
+      width: 6rem;
+      justify-content: end;
+      border: none;
+      background-color: #F7F7F7;
+      margin: 0.25rem;
+      cursor: pointer;
+      background-color: white;
+      align-items: center;
+      padding: 0;
+      height: 1.5rem;
+    }
   }
   
   .searchDisplayName {
@@ -40,5 +63,8 @@
     width: 10rem;
     padding-top: 0.5rem;
     justify-content: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }

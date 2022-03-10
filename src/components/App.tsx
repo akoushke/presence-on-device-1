@@ -10,7 +10,6 @@ import { io } from "socket.io-client";
 import queryString from 'querystring';
 import { client_id, client_secret, auth_url, server_url, redirect_uri } from '../constants';
 import gif from '../../assets/images/bear.gif';
-// import gif from '../../assets/images/presence.png';
 
 declare type Props = null;
 
@@ -65,8 +64,8 @@ export default class App extends Component {
         window.history.pushState({}, document.title, "/presence-on-device");
       }
     } else if(localStorage.getItem('webex_token')) {
-      // await this.validateToken();
-      // await this.connect(localStorage.getItem('webex_token'));
+      await this.validateToken();
+      await this.connect(localStorage.getItem('webex_token'));
 
     } else {
       this.socket.emit('register', this.loginState);
@@ -144,13 +143,13 @@ export default class App extends Component {
     </div>
 
     return <>
-      { this.state.displayAuthPrompt ?
+      {this.state.displayAuthPrompt ?
         authSuccessful :
         <div>
-          {this.state.isTokenValid ? 
+          {!this.state.isTokenValid ? 
             <AuthModal loginState={this.loginState} /> : 
             <div className="app">
-              {!this.state.isWebexConnected ? <Content webex={this.webex} /> : loading}
+              {this.state.isWebexConnected ? <Content webex={this.webex} /> : loading}
             </div>}
         </div>
       }

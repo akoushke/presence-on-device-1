@@ -15,6 +15,7 @@
     height: 2.5rem;
     padding: 0.75rem;
   }
+
   @include respond-to('medium') {
     margin: 0.5rem;
     width: 43rem;
@@ -23,33 +24,6 @@
   }
   @include respond-to('large') {
     width: 59rem;
-  }
-
-  .md-avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-
-    .md-avatar__letter {
-      font-size: 1rem;
-
-      @include respond-to('small') {
-        font-size: 1.575rem;
-      }
-
-      @include respond-to('medium') {
-        font-size: 1.8375rem;
-      }
-    }
-
-    @include respond-to('small') {
-      width: 3.5rem;
-      height: 3.5rem;
-    }
-
-    @include respond-to('medium') {
-      width: 5.25rem;
-      height: 5.25rem;
-    }
   }
 }
 
@@ -99,13 +73,19 @@
       line-height: 1.125rem;
       font-size: 0.75rem;
       color: #545454;
+      width: 9rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
 
       @include respond-to('small') {
         font-size: 0.85rem;
+        width: 12rem;
       }
 
       @include respond-to('medium') {
         font-size: 1rem;
+        width: 15rem;
       }
     }
   }

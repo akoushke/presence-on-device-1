@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import SearchList from './SearchList';
-import {InputSearch} from '@momentum-ui/react';
+import {InputSearch, Button} from '@momentum-ui/react';
 import {searchPeople} from '../Webex';
 import MyAvatarMenu from './MyAvatarMenu';
 import PresenceAvatar from './PresenceAvatar';
@@ -19,8 +19,12 @@ const SearchAvatars = ({webex, person, removePerson}) => {
   }
 
   return  <div 
-    onClick={(event) => {handleClick(event)}}
     className="searchAvatar">
+      <Button className="cancelButton"
+        onClick={(event) => {handleClick(event)}}
+      >
+      <i className="md-icon icon icon-cancel_16" />
+      </Button>
       <PresenceAvatar 
         webex={webex}
         person={person}
