@@ -1,0 +1,11 @@
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+body {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+}
