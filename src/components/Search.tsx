@@ -4,6 +4,7 @@ import {InputSearch, Button} from '@momentum-ui/react';
 import {searchPeople} from '../Webex';
 import MyAvatarMenu from './MyAvatarMenu';
 import PresenceAvatar from './PresenceAvatar';
+import webexPic from '../../assets/images/webex.jpeg';
 
 interface Props {
   webex: any,
@@ -64,6 +65,7 @@ const Search = ({webex, addPerson, removePerson, people}: Props): JSX.Element =>
 
   return <div className="search">
     <div className="searchInput">
+      <img src={webexPic} className="webexPng"/>
       <InputSearch 
         clear
         htmlId='loadingSearchInput'

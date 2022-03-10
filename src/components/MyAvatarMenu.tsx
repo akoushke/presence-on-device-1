@@ -83,6 +83,10 @@ const MyAvatarMenu = ({webex}: Props) => {
   ];
 
   useEffect(() => {
+    getPerson(webex, 'me').then((person) => {
+      setMe(person);
+    });
+
     isPresenceEnabled(webex).then((response) => {
       setIsEnabled(response);
     });
@@ -108,8 +112,8 @@ const MyAvatarMenu = ({webex}: Props) => {
     setIsEnabled(true);
   };
 
-  return  me && <div className="menuContentWrapper">
-    <MenuContent className="menuContent">
+  return  me && <div className="myMenuWrapper">
+    <MenuContent className="myMenuContent">
       <PresenceAvatar 
         webex={webex}
         person={me}
@@ -123,30 +127,30 @@ const MyAvatarMenu = ({webex}: Props) => {
     </MenuContent>
     <Menu 
       focusFirst={false}
-      className="menu">
+      className="myMenu">
       <SubMenu
         label="Do not Disturb"
         title="Do Not Disturb"
-        className="menuItem"
+        className="myMenuItem"
       >
         {durationOptions}
       </SubMenu>
       <MenuItem 
-        className="menuItem"
+        className="myMenuItem"
         key="Active"
         title="Active"
         label="Active"
         onClick={async() => {await setPresence('dnd', 0, webex)}}
       />
       { isEnabled ? <MenuItem 
-        className="menuItem"
+        className="myMenuItem"
         key="Disable Presence"
         title="Disable Presence"
         label="Disable Presence"
         onClick={async() => {await disable()}}
       /> :
       <MenuItem 
-        className="menuItem"
+        className="myMenuItem"
         key="Enable Presence"
         title="Enable Presence"
         label="Enable Presence"

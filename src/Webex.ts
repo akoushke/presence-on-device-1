@@ -48,24 +48,14 @@ export const setPresence = async (status, ttl, webex): Promise<void> => {
   }
 }
 
-export const getPerson = async (id): Promise<any> => {
+export const getPerson = async (webex, id): Promise<any> => {
   try {
-    let config = {
-      method: 'get',
-      url: `https://webexapis.com/v1/people/${id}`,
-      headers: { 
-        Authorization: `Bearer ${localStorage.getItem('webex_token')}`, 
-        Accept: 'application/json', 
-        'Content-Type': 'application/json'
-      },
-    };
-
-    const {data} = await axios(config);
-    return data;
+    return await webex.people.get(id);
   } catch(error) {
     console.log(`getMe() ${error}`);
   }
 }
+
 export const enablePresence = async(webex) : Promise<boolean> => {
   try {
     return webex.internal.presence.enable();

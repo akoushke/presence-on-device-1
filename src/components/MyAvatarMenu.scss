@@ -5,3 +5,79 @@
     cursor: pointer;
   }
 }
+
+
+.myMenuWrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $black-08;
+  width: 12rem;
+  margin: 1rem;
+  border-radius: 0.75rem;
+  background-color: #F7F7F7;
+
+  .cancelButton {
+    display: flex;
+    width: 1.5rem;
+    justify-content: center;
+    border: none;
+    background-color: #F7F7F7;
+    margin: 0.25rem;
+    cursor: pointer;
+    align-self: flex-end; 
+  }
+}
+
+.myMenuContent {
+  display: flex;
+  height: 8rem;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .info {
+    padding-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .displayName {
+      width: 10rem;
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+    }
+
+    .email {
+      padding-top: 0.125rem;
+      font-size: 0.875rem;
+      line-height: 1.125rem;
+      color: $black-60;
+    }
+  }
+}
+
+.myMenuItem {
+  border-bottom: 1px solid $black-08;
+  width: 12rem;
+  
+  .md-list-item {
+    line-height: 0;
+    width: auto !important;
+  }
+}
+
+.emailMenuItem {
+  width: 12rem;
+
+  .md-list-item {
+    width: auto !important;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+  }
+}
+
+.myMenu {
+  width: 17.375rem;
+}

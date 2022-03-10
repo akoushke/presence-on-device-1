@@ -6,11 +6,12 @@
   border-radius: 0.75rem;
   background-color: #F7F7F7;
   margin: 0.25rem;
-  width: 15rem;
+  width: 19rem;
   height: 1.75rem;
   padding: 0.5rem 0.5rem 0.5rem 0.25rem;
-  
+
   @include respond-to('small') {
+    margin: 1rem 0.5rem 0 0;
     width: 25rem;
     height: 2.5rem;
     padding: 0.75rem;
@@ -22,8 +23,13 @@
     height: 4rem;
     padding: 1rem;
   }
+
   @include respond-to('large') {
-    width: 59rem;
+    width: 55rem;
+  }
+
+  @include respond-to('x-large') {
+    width: 65rem;
   }
 }
 
@@ -33,19 +39,8 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 0.5rem;
-  width: 12rem;
+  width: 90%;
   
-  @include respond-to('small') {
-    width: 20rem;
-    padding-left: 1rem;
-  }
-  @include respond-to('medium') {
-    width: 37rem;
-  }
-  @include respond-to('large') {
-    width: 53rem;
-  }
-
   .info {
     display: flex;
     flex-direction: column;

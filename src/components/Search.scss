@@ -2,16 +2,36 @@
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
-  padding: 0 1rem 0 1rem;
-  margin: 1rem 0;
   border-radius: 1rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  
+  
+  @include respond-to('large') {
+    align-items: flex-start;
+    flex-direction: row;
+  }
 
   .searchInput {
     display: flex;
     flex-direction: column;
-    margin: 4rem;
+    margin: 1rem 0 0 0;
+
+    @include respond-to('large') {
+      margin: 0 1.5rem;
+      z-index: 0;
+    }
+
+    .webexPng {
+      display: none;
+
+      @include respond-to('large') {
+        display: block;
+        width: 17rem;
+      }
+    }
   }
 
   .avatars {
@@ -19,14 +39,33 @@
     display: flex;
     overflow: auto;
     flex-wrap: wrap;
-    width: 25rem;
-    height: 40rem;
+    height: 12rem;
     justify-content: center;
     background-color: #F7F7F7;
     border-radius: 1rem;
-    flex-direction: column;
     justify-self: center;
     align-items: center;
+    width: 20rem;
+    
+    @include respond-to('small') {
+      width: 23rem;
+    }
+
+    @include respond-to('medium') {
+      width: 32rem;
+    }
+
+    @include respond-to('large') {
+      width: 35rem;
+      height: 42rem;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    @include respond-to('x-large') {
+      width: 45rem;
+      height: 44rem;
+    }
 
   }
 
@@ -40,12 +79,16 @@
     padding-bottom: 1rem;
     background: white;
     margin: 0.5rem;
-    width: 10.5rem;
     border-radius: 1rem;
+    width: 7.5rem;
+    
+    @include respond-to('small') {
+      width: 10.5rem;
+    }
 
     .cancelButton {
       display: flex;
-      width: 9rem;
+      width: 6rem;
       justify-content: end;
       border: none;
       background-color: #F7F7F7;
@@ -55,6 +98,10 @@
       align-items: center;
       padding: 0;
       height: 1.5rem;
+    }
+
+    @include respond-to('small') {
+      width: 9rem;
     }
   }
   
