@@ -9,7 +9,7 @@ import AuthModal from './AuthModal';
 import { io } from "socket.io-client";
 import queryString from 'querystring';
 import { client_id, client_secret, auth_url, server_url, redirect_uri } from '../constants';
-import gif from '../../assets/images/bear.gif';
+import gif from '../images/bear.gif';
 
 declare type Props = null;
 

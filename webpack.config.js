@@ -33,7 +33,7 @@ module.exports = smp.wrap({
     rules: [
       {
         test: /\.(ts|tsx)$/, 
-        loader: "awesome-typescript-loader",
+        loader: "ts-loader",
         exclude: /node_modules/
       },
       {
@@ -76,7 +76,6 @@ module.exports = smp.wrap({
   devServer: {
     contentBase: path.join(__dirname, './docs'),
     publicPath: '/',
-    historyApiFallback: true,
 
   },
   plugins: [

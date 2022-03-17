@@ -36,6 +36,7 @@ reports/
 
 #Local stuff
 *.json
+!tsconfig.json
 .env*
 !.env.default
 !package.json

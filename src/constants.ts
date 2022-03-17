@@ -7,5 +7,5 @@ export const client_id = 'C3671a5d5848d3eec5772caa324303db9f1d43fa775160aa716637
 export const auth_url = "https://webexapis.com/v1/access_token";
 export const client_secret = "dfe6392a23e7ee31a6888543a43cf798b06906c14a92811b0c7c849fcefa3f16";
 export const login_url = `https://webexapis.com/v1/authorize?client_id=${client_id}&response_type=code&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=${scope}`;
-export const server_url =  "https://webexpresencedevice.ngrok.io"; 
-// export const server_url = "https://presence-device.herokuapp.com";
+// export const server_url =  "https://webexpresencedevice.ngrok.io"; 
+export const server_url = "https://presence-device.herokuapp.com";

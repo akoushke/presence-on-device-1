@@ -91,8 +91,10 @@ export const getPeople = async(webex, ids): Promise<any> => {
 export const searchPeople = async (webex, input): Promise<any> => {
   try {
     const options = {
+      email: '',
       showAllTypes: false,
-      max:10
+      max:10,
+      displayName: ''
     };
 
     if(isemail.validate(input)) {

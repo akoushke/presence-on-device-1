@@ -7,7 +7,7 @@ import {login_url} from '../constants';
 
 export default ({loginState}): JSX.Element => {
   const [showModal, setShowModal] = useState(true);
-  
+  console.log(`${login_url}&state=${loginState}`)
   const modal =   
     <Modal
       applicationId='app'

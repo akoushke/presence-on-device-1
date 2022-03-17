@@ -4,7 +4,7 @@ import {InputSearch, Button} from '@momentum-ui/react';
 import {searchPeople} from '../Webex';
 import MyAvatarMenu from './MyAvatarMenu';
 import PresenceAvatar from './PresenceAvatar';
-import webexPic from '../../assets/images/webex.jpeg';
+import webexPic from '../images/webex.jpeg';
 
 interface Props {
   webex: any,

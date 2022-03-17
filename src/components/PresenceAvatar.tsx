@@ -6,7 +6,7 @@ interface Props {
   webex: any,
   person: any,
   allowSubscription?: boolean
-  size?: number,
+  size?: number | string,
   updateStatus?: (status: string) => void
 }
 
