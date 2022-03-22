@@ -27,6 +27,10 @@ export default class App extends Component {
     super(props);
     this.code = new URLSearchParams(window.location.search).get("code");
     this.urlState = new URLSearchParams(window.location.search).get("state");
+
+    localStorage.setItem('mode', new URLSearchParams(window.location.search).get("mode") || 'pubSub');
+    localStorage.setItem('interval', new URLSearchParams(window.location.search).get("interval") || '5000');
+
     this.loginState = uuidv4();
     this.socket = io(server_url);
     this.token = "";
@@ -81,8 +85,10 @@ export default class App extends Component {
   async connect(token: string): Promise<void> {
     try {
       this.webex = new Webex({ credentials: token});
-      // await this.webex.internal.device.register();
-      await this.webex.internal.mercury.connect();
+
+      if(localStorage.getItem('mode') === 'pubSub') {
+        await this.webex.internal.mercury.connect();
+      }
 
       this.setState({isWebexConnected: true});
     } catch (error) {

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {subscribePresence, getCurrentPresenceStatus, unsubscribePresence} from '../Webex';
+import {subscribePresence, getCurrentPresenceStatus, unsubscribePresence, getPerson} from '../Webex';
 import {Avatar} from '@momentum-ui/react';
 
 interface Props {
@@ -14,23 +14,39 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
   const [type, setType] = useState('');
 
   useEffect(() => {
-    if(allowSubscription) {
-      subscribePresence(webex, person.id, (status) => {
-        if(!status || status === 'unknown') {
-          status = '';
-        }
-        
-        updateStatus(status)
-        setType(status);
-      });
+    const mode = localStorage.getItem('mode');
+    
+    if(mode === 'pubSub') {
+      if(allowSubscription) {
+        subscribePresence(webex, person.id, (status) => {
+          if(!status || status === 'unknown') {
+            status = '';
+          }
+          
+          updateStatus(status)
+          setType(status);
+        });
+      } else {
+        getCurrentPresenceStatus(webex, person.id).then((status) => {
+          if(!status || status === 'unknown') { 
+            status = '';
+          } 
+          
+          setType(status);
+        });
+      }
     } else {
-      getCurrentPresenceStatus(webex, person.id).then((status) => {
-        if(!status || status === 'unknown') { 
-          status = '';
-        } 
+      const interval = localStorage.getItem('interval');
+      
+      //Initial Load
+      getPerson(undefined, person.id).then(({status}) => setType(status));
+
+      setInterval(async() => {
+        const {status} = await getPerson(undefined, person.id);
 
         setType(status);
-      });
+      }, Number(interval));
+      
     }
   
     return  () => {

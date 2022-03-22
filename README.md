@@ -32,6 +32,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#url-parameters">URL Parameters</a></li>
       </ul>
     </li>
     <li>
@@ -60,6 +61,12 @@ In this demo we show how to subscribe to others and set self statuses using webe
 - [React](https://reactjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
 
+### URL Parameters
+This app accepts the following URL parameters:
+| Parameter  | Required | Description | Default
+| ------------- | ------------- | ------------- | ------------- |
+| mode | optional | retrieve live user presence data in two ways: to Poll REST API with give interval AKA 'polling' or Subscribe to Webex internal webSocket connection AKA 'pubSub' | pubSub
+| interval | optional | Given interval to poll REST API if mode is set to 'polling' | 5000
 <!-- GETTING STARTED -->
 
 ## Getting Started
