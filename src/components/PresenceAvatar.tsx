@@ -15,7 +15,8 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
 
   useEffect(() => {
     const mode = localStorage.getItem('mode');
-    
+    let loop;
+
     if(mode === 'pubSub') {
       if(allowSubscription) {
         subscribePresence(webex, person.id, (status) => {
@@ -39,18 +40,25 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
       const interval = localStorage.getItem('interval');
       
       //Initial Load
-      getPerson(undefined, person.id).then(({status}) => setType(status));
+      getPerson(undefined, person.id).then(({status}) => {
+        updateStatus(status);
+        setType(status)
+      });
 
-      setInterval(async() => {
+      loop = setInterval(async() => {
         const {status} = await getPerson(undefined, person.id);
-
+        updateStatus(status);
         setType(status);
       }, Number(interval));
       
     }
   
     return  () => {
-      unsubscribePresence(webex, person.id).then();
+      if(mode === 'pubSub') {
+        unsubscribePresence(webex, person.id).then();
+      } else {
+        clearInterval(loop);
+      }
     }
   }, [])
 

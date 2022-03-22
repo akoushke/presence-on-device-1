@@ -28,9 +28,6 @@ export default class App extends Component {
     this.code = new URLSearchParams(window.location.search).get("code");
     this.urlState = new URLSearchParams(window.location.search).get("state");
 
-    localStorage.setItem('mode', new URLSearchParams(window.location.search).get("mode") || 'pubSub');
-    localStorage.setItem('interval', new URLSearchParams(window.location.search).get("interval") || '5000');
-
     this.loginState = uuidv4();
     this.socket = io(server_url);
     this.token = "";
@@ -67,18 +64,23 @@ export default class App extends Component {
         await this.connect(data.access_token);
         window.history.pushState({}, document.title, "/presence-on-device");
       }
-    } else if(localStorage.getItem('webex_token')) {
-      await this.validateToken();
-      await this.connect(localStorage.getItem('webex_token'));
-
     } else {
-      this.socket.emit('register', this.loginState);
-
-      this.socket.on('token', async (token) => {
-        this.setState({isTokenValid: true});
-        this.storeToken(token);
-        await this.connect(token.access_token);
-      });
+      localStorage.setItem('mode', new URLSearchParams(window.location.search).get("mode") || 'pubSub');
+      localStorage.setItem('interval', new URLSearchParams(window.location.search).get("interval") || '5000');
+  
+      if(localStorage.getItem('webex_token')) {
+        await this.validateToken();
+        await this.connect(localStorage.getItem('webex_token'));
+  
+      } else {
+        this.socket.emit('register', this.loginState);
+  
+        this.socket.on('token', async (token) => {
+          this.setState({isTokenValid: true});
+          this.storeToken(token);
+          await this.connect(token.access_token);
+        });
+      }
     }
   }
   
