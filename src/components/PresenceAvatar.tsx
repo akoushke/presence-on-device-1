@@ -13,6 +13,13 @@ interface Props {
 export default ({webex, person, allowSubscription=false, size=28, updateStatus=()=>{}}: Props): JSX.Element => {
   const [type, setType] = useState('');
 
+  const filterStatus = (status) => {
+    if(!status || status === "unknown") return "";
+    if(status === "DoNotDisturb") return "dnd";
+
+    return status;
+  }
+
   useEffect(() => {
     const mode = localStorage.getItem('mode');
     let loop;
@@ -20,20 +27,16 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
     if(mode === 'pubSub') {
       if(allowSubscription) {
         subscribePresence(webex, person.id, (status) => {
-          if(!status || status === 'unknown') {
-            status = '';
-          }
-          
-          updateStatus(status)
-          setType(status);
+          const cleanStatus = filterStatus(status);
+
+          updateStatus(cleanStatus)
+          setType(cleanStatus);
         });
       } else {
         getCurrentPresenceStatus(webex, person.id).then((status) => {
-          if(!status || status === 'unknown') { 
-            status = '';
-          } 
+          const cleanStatus = filterStatus(status);
           
-          setType(status);
+          setType(cleanStatus);
         });
       }
     } else {
@@ -41,14 +44,18 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
       
       //Initial Load
       getPerson(undefined, person.id).then(({status}) => {
-        updateStatus(status);
-        setType(status)
+        const cleanStatus = filterStatus(status);
+
+        updateStatus(cleanStatus);
+        setType(cleanStatus);
       });
 
       loop = setInterval(async() => {
         const {status} = await getPerson(undefined, person.id);
-        updateStatus(status);
-        setType(status);
+        const cleanStatus = filterStatus(status);
+
+        updateStatus(cleanStatus);
+        setType(cleanStatus);
       }, Number(interval));
       
     }
