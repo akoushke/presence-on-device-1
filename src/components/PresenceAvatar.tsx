@@ -16,6 +16,7 @@ export default ({webex, person, allowSubscription=false, size=28, updateStatus=(
   const filterStatus = (status) => {
     if(!status || status === "unknown") return "";
     if(status === "DoNotDisturb") return "dnd";
+    if(status === "OutOfOffice") return "ooo";
 
     return status;
   }
